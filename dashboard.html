@@ -1,0 +1,182 @@
+<!-- ============================================================
+     MODULE: dashboard.html
+     Deskripsi: Konten utama dashboard — stat cards, chart, tabel
+     Dipanggil oleh: index.html via ModuleLoader
+     ============================================================ -->
+
+<main class="app-main">
+
+  <!-- Page Title -->
+  <div class="page-head">
+    <div>
+      <h1 class="page-title">Dashboard</h1>
+      <p class="page-sub">Selamat datang kembali, Budi — ini ringkasan hari ini.</p>
+    </div>
+    <button class="btn-primary" id="exportBtn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Export Data
+    </button>
+  </div>
+
+  <!-- Stat Cards -->
+  <section class="stats-row">
+    <div class="stat-card" data-trend="up">
+      <div class="stat-header">
+        <span class="stat-label">Total Pendapatan</span>
+        <div class="stat-icon blue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stat-value">Rp 48,2 Jt</div>
+      <div class="stat-trend up">↑ 14.3% bulan ini</div>
+    </div>
+
+    <div class="stat-card" data-trend="up">
+      <div class="stat-header">
+        <span class="stat-label">Pengguna Aktif</span>
+        <div class="stat-icon green">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stat-value">2.841</div>
+      <div class="stat-trend up">↑ 6.1% bulan ini</div>
+    </div>
+
+    <div class="stat-card" data-trend="down">
+      <div class="stat-header">
+        <span class="stat-label">Pesanan Masuk</span>
+        <div class="stat-icon orange">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stat-value">394</div>
+      <div class="stat-trend down">↓ 2.8% bulan ini</div>
+    </div>
+
+    <div class="stat-card" data-trend="up">
+      <div class="stat-header">
+        <span class="stat-label">Tingkat Konversi</span>
+        <div class="stat-icon purple">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+      </div>
+      <div class="stat-value">4.72%</div>
+      <div class="stat-trend up">↑ 0.9% bulan ini</div>
+    </div>
+  </section>
+
+  <!-- Middle: Chart + Quick Stats -->
+  <section class="mid-row">
+
+    <!-- Bar Chart -->
+    <div class="card chart-card">
+      <div class="card-head">
+        <span class="card-title">Pendapatan Mingguan</span>
+        <div class="chart-tabs">
+          <button class="chart-tab active" data-period="week">Minggu</button>
+          <button class="chart-tab" data-period="month">Bulan</button>
+        </div>
+      </div>
+      <div class="bar-chart-wrap" id="barChart">
+        <!-- Bars rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Donut + breakdown -->
+    <div class="card donut-card">
+      <div class="card-head">
+        <span class="card-title">Sumber Trafik</span>
+      </div>
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 120 120">
+          <circle class="donut-track" cx="60" cy="60" r="48" fill="none" stroke-width="16"/>
+          <circle class="donut-seg seg-1" cx="60" cy="60" r="48" fill="none" stroke-width="16"
+                  stroke-dasharray="120 181" stroke-dashoffset="0"/>
+          <circle class="donut-seg seg-2" cx="60" cy="60" r="48" fill="none" stroke-width="16"
+                  stroke-dasharray="72 229" stroke-dashoffset="-120"/>
+          <circle class="donut-seg seg-3" cx="60" cy="60" r="48" fill="none" stroke-width="16"
+                  stroke-dasharray="54 247" stroke-dashoffset="-192"/>
+          <circle class="donut-seg seg-4" cx="60" cy="60" r="48" fill="none" stroke-width="16"
+                  stroke-dasharray="55 246" stroke-dashoffset="-246"/>
+        </svg>
+        <div class="donut-center">
+          <span class="donut-total">8.4k</span>
+          <span class="donut-label">Kunjungan</span>
+        </div>
+      </div>
+      <ul class="donut-legend">
+        <li><span class="leg-dot c1"></span><span class="leg-name">Organik</span><span class="leg-val">40%</span></li>
+        <li><span class="leg-dot c2"></span><span class="leg-name">Sosial</span><span class="leg-val">24%</span></li>
+        <li><span class="leg-dot c3"></span><span class="leg-name">Referral</span><span class="leg-val">18%</span></li>
+        <li><span class="leg-dot c4"></span><span class="leg-name">Lainnya</span><span class="leg-val">18%</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Table -->
+  <section class="card table-card">
+    <div class="card-head">
+      <span class="card-title">Transaksi Terbaru</span>
+      <input type="text" class="table-search" placeholder="Filter transaksi..." id="tableFilter" />
+    </div>
+    <div class="table-wrap">
+      <table class="data-table" id="transactionTable">
+        <thead>
+          <tr>
+            <th class="sortable" data-col="id">ID <span class="sort-ico">↕</span></th>
+            <th class="sortable" data-col="name">Nama <span class="sort-ico">↕</span></th>
+            <th class="sortable" data-col="amount">Jumlah <span class="sort-ico">↕</span></th>
+            <th>Metode</th>
+            <th class="sortable" data-col="date">Tanggal <span class="sort-ico">↕</span></th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td>#TRX-001</td><td>Siti Rahayu</td><td>Rp 1.250.000</td>
+            <td>Transfer</td><td>28 Apr 2026</td>
+            <td><span class="badge success">Sukses</span></td>
+          </tr>
+          <tr>
+            <td>#TRX-002</td><td>Ahmad Fauzi</td><td>Rp 840.000</td>
+            <td>QRIS</td><td>27 Apr 2026</td>
+            <td><span class="badge success">Sukses</span></td>
+          </tr>
+          <tr>
+            <td>#TRX-003</td><td>Dewi Lestari</td><td>Rp 3.200.000</td>
+            <td>Kartu Kredit</td><td>27 Apr 2026</td>
+            <td><span class="badge pending">Proses</span></td>
+          </tr>
+          <tr>
+            <td>#TRX-004</td><td>Rizky Pratama</td><td>Rp 560.000</td>
+            <td>Transfer</td><td>26 Apr 2026</td>
+            <td><span class="badge failed">Gagal</span></td>
+          </tr>
+          <tr>
+            <td>#TRX-005</td><td>Hendra Kusuma</td><td>Rp 2.100.000</td>
+            <td>QRIS</td><td>26 Apr 2026</td>
+            <td><span class="badge success">Sukses</span></td>
+          </tr>
+          <tr>
+            <td>#TRX-006</td><td>Rina Wati</td><td>Rp 450.000</td>
+            <td>Transfer</td><td>25 Apr 2026</td>
+            <td><span class="badge success">Sukses</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>

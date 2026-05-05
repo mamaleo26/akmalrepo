@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Online Sederhana</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        width: 350px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #4facfe;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    button:hover {
+        background: #007bff;
+    }
+
+    .reset {
+        background: #ff4d4d;
+    }
+
+    .reset:hover {
+        background: #cc0000;
+    }
+
+    .cv {
+        margin-top: 20px;
+        text-align: left;
+        display: none;
+        border-top: 1px solid #ddd;
+        padding-top: 15px;
+    }
+
+    .cv h3 {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .cv p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 id="greeting">Halo, Pengunjung</h1>
+
+    <input type="text" id="namaInput" placeholder="Masukkan nama kamu">
+
+    <button onclick="simpanNama()">Simpan Data CV</button>
+    <button class="reset" onclick="hapusData()">Reset</button>
+
+    <div class="cv" id="cvBox">
+        <h3>Data CV</h3>
+        <p id="cvNama"></p>
+        <p>Profesi: Pelajar / Mahasiswa</p>
+        <p>Email: akmal@email.com</p>
+        <p>Alamat: Rancaekek, Bandung</p>
+        <p>Skill: HTML, CSS, JavaScript</p>
+    </div>
+
+</div>
+
+<script>
+    // Saat halaman dibuka
+    window.onload = function() {
+        let nama = localStorage.getItem("nama");
+
+        if (nama) {
+            tampilkanData(nama);
+        }
+    }
+
+    // Simpan nama
+    function simpanNama() {
+        let nama = document.getElementById("namaInput").value.trim();
+
+        if (nama === "") {
+            alert("Nama tidak boleh kosong!");
+            return;
+        }
+
+        localStorage.setItem("nama", nama);
+
+        tampilkanData(nama);
+    }
+
+    // Tampilkan ke halaman
+    function tampilkanData(nama) {
+        document.getElementById("greeting").innerText = "Halo, " + nama;
+        document.getElementById("cvNama").innerText = "Nama: " + nama;
+        document.getElementById("cvBox").style.display = "block";
+    }
+
+    // Reset data
+    function hapusData() {
+        localStorage.removeItem("nama");
+
+        document.getElementById("greeting").innerText = "Halo, Pengunjung";
+        document.getElementById("namaInput").value = "";
+        document.getElementById("cvBox").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
